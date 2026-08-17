@@ -1,0 +1,111 @@
+@charset "UTF-8";
+#join{
+    width:800px;
+    margin:40px auto;
+    background:#fff;
+    border:1px solid #ddd;
+    padding:30px;
+}
+
+#join h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#333;
+}
+
+.required{
+    text-align:right;
+    margin-bottom:10px;
+    font-size:13px;
+    color:#666;
+}
+
+.required span,
+th span{
+    color:red;
+}
+
+#join table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+#join tr{
+    border-bottom:1px solid #eee;
+}
+
+#join th{
+    width:180px;
+    background:#f8f8f8;
+    text-align:left;
+    padding:15px;
+}
+
+#join td{
+    padding:15px;
+}
+
+#join input[type=text],
+#join input[type=password],
+#join select{
+    height:30px;
+    border:1px solid #ccc;
+    padding-left:5px;
+}
+
+#join input[type=text]:focus,
+#join input[type=password]:focus,
+#join select:focus{
+    border:1px solid #d32f2f;
+    outline:none;
+}
+
+#join input[type=button]{
+    height:32px;
+    padding:0 10px;
+    border:1px solid #bbb;
+    background:#f5f5f5;
+    cursor:pointer;
+}
+
+#join input[type=button]:hover{
+    background:#ddd;
+}
+
+#join small{
+    color:#888;
+    font-size:11px;
+}
+
+
+
+.btnArea{
+    text-align:center;
+    margin-top:30px;
+}
+
+.btnArea input{
+    width:120px;
+    height:40px;
+    border:none;
+    cursor:pointer;
+    margin:0 10px;
+}
+
+.btnArea input[type=submit]{
+    background:#d32f2f;
+    color:white;
+}
+
+.btnArea input[type=submit]:hover{
+    background:#b71c1c;
+}
+
+.btnArea input[type=reset]{
+    background:#777;
+    color:white;
+}
+
+.btnArea input[type=reset]:hover{
+    background:#555;
+}

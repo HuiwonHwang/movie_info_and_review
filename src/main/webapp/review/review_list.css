@@ -1,0 +1,99 @@
+@charset "UTF-8";
+#reviewList{
+    width:1200px;
+    margin:30px auto;
+    background:#fff;
+    border:1px solid #ddd;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+#reviewList h2{
+    margin-bottom:20px;
+}
+
+.searchArea{
+    margin-bottom:20px;
+}
+
+.searchArea span{
+    font-weight:bold;
+}
+
+.searchArea input[type=text]{
+    width:250px;
+    height:30px;
+    margin:0 5px;
+    padding-left:8px;
+}
+
+.searchArea input[type=button]{
+    height:32px;
+    padding:0 12px;
+    cursor:pointer;
+}
+
+.searchArea select{
+    height:32px;
+    margin-right:10px;
+    float:right;
+    
+}
+
+.writeBtn{
+    float:right;
+}
+
+.reviewTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.reviewTable th{
+    height:45px;
+    background:#f5f5f5;
+    border-top:2px solid #d32f2f;
+    border-bottom:1px solid #ccc;
+}
+
+.reviewTable td{
+    height:45px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+.reviewTable td:nth-child(3){
+    text-align:left;
+    padding-left:15px;
+}
+
+.reviewTable tr:hover{
+    background:#fafafa;
+}
+
+.reviewTable a{
+    color:black;
+}
+
+.reviewTable a:hover{
+    color:#d32f2f;
+}
+
+.paging{
+    margin-top:25px;
+    text-align:center;
+}
+
+.paging a{
+    display:inline-block;
+    width:30px;
+    height:30px;
+    line-height:30px;
+    border:1px solid #ddd;
+    margin:0 2px;
+}
+
+.paging a:hover{
+    background:#d32f2f;
+    color:white;
+}
