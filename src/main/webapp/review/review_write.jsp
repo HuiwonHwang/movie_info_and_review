@@ -2,8 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@include file="../common_head.jsp"%>
 <link href="review/review_write.css" rel="stylesheet">
+<script>
+	function goSave(){
+		review.t_gubun.value="reviewsave";
+		review.method="post";
+		review.action="Review";
+		review.submit();
+	}
+</script>
 <%@include file="../common_header.jsp"%>
-
+<c:if test="${empty sessionId }">
+	<script>
+		alert("로그인이 필요한 기능입니다.");
+		location.href="Member";
+	</script>
+</c:if>
+<c:if test="${not empty sessionId }">
 <form name="review">
 <div id="reviewWrite">
 
@@ -35,62 +49,27 @@
 			    <th>별점</th>
 			    <td>
 			
-			        <div class="rating">
-			
-			            <label class="rating__label rating__label--half">
-			                <input type="radio" name="rating" value="0.5">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--full">
-			                <input type="radio" name="rating" value="1">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--half">
-			                <input type="radio" name="rating" value="1.5">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--full">
-			                <input type="radio" name="rating" value="2">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--half">
-			                <input type="radio" name="rating" value="2.5">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--full">
-			                <input type="radio" name="rating" value="3">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--half">
-			                <input type="radio" name="rating" value="3.5">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--full">
-			                <input type="radio" name="rating" value="4">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--half">
-			                <input type="radio" name="rating" value="4.5">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			            <label class="rating__label rating__label--full">
-			                <input type="radio" name="rating" value="5">
-			                <span class="star-icon"></span>
-			            </label>
-			
-			        </div>
-			
-			        <span id="score">0점</span>
-			
+			      <div class="rating-box">
+    <label for="rating">평점</label>
+
+    <div class="rating-control">
+        <input
+            type="range"
+            id="rating"
+            min="0.5"
+            max="5"
+            step="0.5"
+            value="3.5"
+        >
+        <span id="ratingValue">3.5</span>
+    </div>
+
+    <div class="rating-range">
+        <span>0.5</span>
+        <span>5.0</span>
+    </div>
+</div>
+<script type="text/javascript" src="js/review.js"></script>
 			    </td>
 			</tr>
 
@@ -107,7 +86,7 @@
 
         <div class="btnArea">
 
-            <input type="submit" value="등록">
+            <input type="button" onclick="goSave()" value="등록">
 
             <input type="button"
                    value="취소"
@@ -118,10 +97,11 @@
 
 </div>
 </form>
+</c:if>
 <footer>
 	<%@include file="../common_footer.jsp"%>
 </footer>
-<script type="text/javascript" src="js/review.js"></script>
+
 
 </body>
 </html>

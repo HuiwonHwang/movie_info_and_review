@@ -324,7 +324,7 @@ public class MemberDao {
 		    ps.executeUpdate();
 
 		   
-		    con.commit();
+		 //   con.commit();
 
 		        result = 1;
 
@@ -332,11 +332,11 @@ public class MemberDao {
 
 		        e.printStackTrace();
 
-		        try {
-		            con.rollback();
-		        } catch (Exception e2) {
-		            e2.printStackTrace();
-		        }
+//		        try {
+//		            con.rollback();
+//		        } catch (Exception e2) {
+//		            e2.printStackTrace();
+//		        }
 
 		    } finally {
 

@@ -35,11 +35,7 @@
         <tr>
             <th>이메일</th>
             <td>
-                 ${dto.getEmail_1() }
-
-                @
-
-                 ${dto.getEmail_2() }
+                 ${dto.getEmail_1() }@${dto.getEmail_2() }
             </td>
         </tr>
 
@@ -54,7 +50,10 @@
             <th>좋아하는 장르</th>
             <td>
 
-				${dto.getGenre_name_1()},${dto.getGenre_name_2()},${dto.getGenre_name_3()}
+				${dto.getGenre_name_1()}
+				<c:if test="${not empty dto.getGenre_name_2()}">,${dto.getGenre_name_2()}</c:if>
+				<c:if test="${not empty dto.getGenre_name_3()}">,${dto.getGenre_name_3()}</c:if>
+				
 
             </td>
         </tr>

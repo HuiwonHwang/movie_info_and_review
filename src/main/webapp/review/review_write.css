@@ -63,46 +63,90 @@
     resize:none;
     border:1px solid #ccc;
 }
-.rating {
-    display: flex;
-    width: 200px;
-    height: 28px;
+.rating-box {
+    width: 400px;
+    padding: 20px 24px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: #fff;
+    box-sizing: border-box;
 }
 
-.rating__label {
+.rating-box > label {
     display: block;
-    width: 20px;
-    height: 28px;
-    overflow: hidden;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.rating-control {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.rating-control input[type="range"] {
+    flex: 1;
+    height: 6px;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 10px;
+    background: #ddd;
     cursor: pointer;
 }
 
-.rating__input {
-    display: none;
+/* 슬라이더 동그라미 */
+.rating-control input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 18px;
+    height: 18px;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+
+    background: #555;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
 }
 
-.star-icon {
-    display: block;
-    width: 20px;
-    height: 28px;
+.rating-control input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
 
-    background-image: url("../img/ico-star-empty.svg");
-    background-repeat: no-repeat;
-    background-size: 28px 28px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+
+    background: #555;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
 }
 
-.rating__label--half .star-icon {
-    background-position: left;
+/* 현재 점수 */
+#ratingValue {
+    min-width: 42px;
+
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+
+    text-align: center;
 }
 
-.rating__label--full .star-icon {
-    background-position: right;
-}
+.rating-range {
+    display: flex;
+    justify-content: space-between;
 
-.rating__input:checked + .star-icon {
-    background-image: url("../img/ico-star-full.svg");
-}
+    margin-top: 8px;
 
+    font-size: 12px;
+    color: #999;
+}
 .btnArea{
     text-align:center;
     margin-top:25px;

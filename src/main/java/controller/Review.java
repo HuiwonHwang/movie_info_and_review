@@ -40,6 +40,9 @@ public class Review extends HttpServlet {
 			viewPage="review/review_view.jsp";
 		}else if(gubun.equals("updateform")) {
 			viewPage="review/review_update.jsp";
+		}else if(gubun.equals("reviewsave")) {
+			
+			viewPage="common_alert_view.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
