@@ -41,7 +41,7 @@ public class Review extends HttpServlet {
 		}else if(gubun.equals("updateform")) {
 			viewPage="review/review_update.jsp";
 		}else if(gubun.equals("reviewsave")) {
-			
+			   
 			viewPage="common_alert_view.jsp";
 		}
 		
