@@ -42,16 +42,17 @@
 </header>
 <nav id="nav">
 <ul>
-	<li><a href="">현재상영작</a></li>
-	<li><a href="">개봉예정작</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">현재상영작</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">개봉예정작</a></li>
 	<li><a href="Review">리뷰</a></li>
-	<li><a href="">굿즈 및 특전</a></li>
-	<li><a href="">커뮤니티</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">굿즈 및 특전</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">커뮤니티</a></li>
 </ul>
+<!-- 
 <div id="searchbox">
     <span>🔍</span>
     <input type="text" id="search" placeholder="영화 검색">
-</div>
+</div> -->
 </nav>
 <div>
 	<div id="boxoffice">
@@ -152,44 +153,25 @@
     </div>
 
     <table class="reviewTable">
-        <tr>
-            <td class="movieTitle">호프</td>
-            <td class="reviewTitle">
-                <a href="">반전이 엄청난 영화였습니다.</a>
-            </td>
-            <td class="writer">최민식</td>
-            <td class="like">❤ 25</td>
-        </tr>
-
-        <tr>
-            <td>도라에몽</td>
-            <td><a href="">어른도 재미있게 볼 수 있네요.</a></td>
-            <td>홍길동</td>
-            <td>❤18</td>
-        </tr>
-
-        <tr>
-            <td>큐어</td>
-            <td><a href="">여운이 오래 남습니다.</a></td>
-            <td>김철수</td>
-            <td>❤15</td>
-        </tr>
-
-        <tr>
-            <td>건담</td>
-            <td><a href="">팬이라면 꼭 보세요.</a></td>
-            <td>박영희</td>
-            <td>❤12</td>
-        </tr>
-
-        <tr>
-            <td>위대한 쇼맨</td>
-            <td><a href="">OST가 정말 좋았습니다.</a></td>
-            <td>이민수</td>
-            <td>❤11</td>
-        </tr>
+        <c:choose>
+            <c:when test="${empty dtos}">
+                <tr><td colspan="4">등록된 리뷰가 없습니다.</td></tr>
+            </c:when>
+            <c:otherwise>
+                <c:forEach items="${dtos}" var="dto" begin="0" end="4">
+                    <tr>
+                        <td class="movieTitle"><c:out value="${dto.getMovieNm()}"/></td>
+                        <td class="reviewTitle">
+                            <a href="Review?t_gubun=reviewview&t_no=${dto.getReview_no()}"><c:out value="${dto.getReview_title()}"/></a>
+                        </td>
+                        <td class="writer"><c:out value="${dto.getNickname()}"/></td>
+                        <td class="like">❤ ${dto.getRecommend_count()}</td>
+                    </tr>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
     </table>
-    <input type="button" class="seeMore" value="더보기">
+    <input type="button" onclick="movePage('Review','list')" class="seeMore" value="더보기">
 </div>
 
 		<div id="community">

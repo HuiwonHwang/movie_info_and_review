@@ -6,7 +6,7 @@
 <%@include file="../common_header.jsp"%>
 
 
-<form name="review">
+<form name="review" onsubmit="return searchMovie();">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_no">
 <div id="reviewList">
@@ -18,11 +18,12 @@
         <span>영화 검색</span>
 
         <input type="text" name="movieSearch"
+               value="<c:out value='${movieSearch}'/>"
                placeholder="영화명을 입력하세요">
 
-        <input type="button" value="검색">
+        <input type="button" onclick="searchMovie()" value="검색">
 
-        <input type="button" value="전체보기">
+        <input type="button" value="전체보기" onclick="showAllReviews()">
 
 		<input type="button" value="글쓰기" onclick="movePage('Review','writeform')" class="writeBtn">
 
@@ -46,7 +47,7 @@
     <th width="70">평점</th>
     <th width="100">작성자</th>
     <th width="70">조회</th>
-    <th width="70">추천</th>
+   <!--  <th width="70">추천</th> -->
     <th width="100">작성일</th>
 </tr>
 <c:forEach items="${dtos }" var="dto">
@@ -61,7 +62,7 @@
     <td>${dto.getScore()}점</td>
     <td>${dto.getNickname()}</td>
     <td>${dto.getView_count()}</td>
-    <td>${dto.getRecommend_count()}</td>
+    <!-- <td>${dto.getRecommend_count()}</td> -->
     <td><fmt:formatDate value="${dto.getReg_date()}" pattern="yyyy-MM-dd"/></td>
 </tr>
 </c:forEach>

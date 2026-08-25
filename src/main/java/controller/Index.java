@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command.review.ReviewList;
+
 /**
  * Servlet implementation class Index
  */
@@ -28,6 +30,9 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ReviewList review=new ReviewList();
+		review.execute(request);
 		request.setCharacterEncoding("utf-8");
 		RequestDispatcher rd =
 						request.getRequestDispatcher("index.jsp");

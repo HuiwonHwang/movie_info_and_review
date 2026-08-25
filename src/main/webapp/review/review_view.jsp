@@ -51,6 +51,7 @@
     <span>작성일 <fmt:formatDate value="${dto.getReg_date()}" pattern="yyyy-MM-dd HH:mm"/></span>
     <span>조회 ${dto.getView_count()}</span>
 </div>
+<!-- 
 <div class="recommendArea">
     <div class="recommendCount">
         👍 <span>${dto.getRecommend_count()}</span>
@@ -58,8 +59,8 @@
 
     <input type="button"
            value="추천"
-           onclick="recommendReview('${dto.getReview_no()}')">
-</div>
+           onclick="recommendReview('${dto.getReview_no()}')"> 
+</div>-->
         <div class="btnArea">
 	<c:if test="${sessionName eq dto.getNickname()}">
             <input type="button" onclick="updateReviewForm('${dto.getReview_no()}')" value="수정">

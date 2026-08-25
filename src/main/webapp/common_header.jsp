@@ -26,14 +26,15 @@
 </header>
 <nav id="nav">
 <ul>
-	<li><a href="">현재상영작</a></li>
-	<li><a href="">개봉예정작</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">현재상영작</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">개봉예정작</a></li>
 	<li><a href="Review">리뷰</a></li>
-	<li><a href="">굿즈 및 특전</a></li>
-	<li><a href="">커뮤니티</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">굿즈 및 특전</a></li>
+	<li><a href="#" onclick="return showPreparationAlert();">커뮤니티</a></li>
 </ul>
+<!-- 
 <div id="searchbox">
     <span>🔍</span>
     <input type="text" id="search" placeholder="영화 검색">
-</div>
+</div> -->
 </nav>

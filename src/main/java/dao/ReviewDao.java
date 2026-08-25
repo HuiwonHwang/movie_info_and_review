@@ -41,9 +41,48 @@ public class ReviewDao {
 		return movieCd;
 	}
 
+	/**
+	 * 영화명이 이미 있으면 기존 코드를 반환하고, 없으면 영화를 등록한 뒤 새 코드를 반환한다.
+	 */
+	public String getOrCreateMovieCd(String movieNm) {
+		String movieCd = getMovieCd(movieNm);
+		if (movieCd != null) {
+			return movieCd;
+		}
+
+		String seqSql = "select my_황희원_movie_seq.nextval from dual";
+		String insertSql = "insert into my_황희원_movie (movieCd, movieNm, openDt) values (?, ?, sysdate)";
+		try {
+			con = DBConnection.getConnection();
+
+			ps = new LogPreparedStatement(con, seqSql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				// 기존 영화 코드(영화진흥위원회 코드 등)는 숫자일 수 있으므로 새 코드는 별도 접두어를 사용한다.
+				movieCd = "U" + rs.getString(1);
+			}
+			rs.close();
+			ps.close();
+			rs = null;
+			ps = null;
+
+			ps = new LogPreparedStatement(con, insertSql);
+			ps.setString(1, movieCd);
+			ps.setString(2, movieNm);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			movieCd = null;
+		} finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		return movieCd;
+	}
+
 	public int insertReview(ReviewDto dto) {
 
 	    int reviewNo = 0;
+	    int generatedReviewNo = 0;
 
 	    String seqSql =
 	        "select my_황희원_review_seq.nextval from dual";
@@ -62,7 +101,7 @@ public class ReviewDao {
 	        rs = ps.executeQuery();
 
 	        if (rs.next()) {
-	            reviewNo = rs.getInt(1);
+	            generatedReviewNo = rs.getInt(1);
 	        }
 
 	        rs.close();
@@ -74,14 +113,16 @@ public class ReviewDao {
 	        // 리뷰 등록
 	        ps = new LogPreparedStatement(con, sql);
 
-	        ps.setInt(1, reviewNo);
+	        ps.setInt(1, generatedReviewNo);
 	        ps.setString(2, dto.getMovieCd());
 	        ps.setString(3, dto.getMember_id());
 	        ps.setString(4, dto.getReview_title());
 	        ps.setString(5, dto.getReview_content());
 	        ps.setDouble(6, dto.getScore());
 
-	        ps.executeUpdate();
+	        if (ps.executeUpdate() == 1) {
+	            reviewNo = generatedReviewNo;
+	        }
 
 	    } catch (Exception e) {
 
@@ -133,11 +174,22 @@ public class ReviewDao {
 	}
 
 	public List<ReviewDto> getList() {
+		return getList(null);
+	}
+
+	public List<ReviewDto> getList(String movieSearch) {
 		List<ReviewDto> dtos=new ArrayList<>();
 		String sql="select v.movieNm,r.review_no,r.review_title,r.score,r.reg_date,m.nickname,r.recommend_count,r.view_count from my_황희원_movie v,my_황희원_member m,my_황희원_review r where v.movieCd=r.movieCd and m.id=r.member_id";
+		if (movieSearch != null && !movieSearch.isEmpty()) {
+			sql += " and v.movieNm like ?";
+		}
+		sql += " order by r.reg_date desc";
 		try {
 			con=DBConnection.getConnection();
 			ps=new LogPreparedStatement(con, sql);
+			if (movieSearch != null && !movieSearch.isEmpty()) {
+				ps.setString(1, "%" + movieSearch + "%");
+			}
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				int review_no=rs.getInt("review_no");

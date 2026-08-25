@@ -3,6 +3,11 @@
  */
 let position = 0;
 
+function showPreparationAlert(){
+    alert("🚧 페이지 준비 중입니다.");
+    return false;
+}
+
 function movieNext(){
 
     position++;

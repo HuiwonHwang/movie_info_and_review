@@ -13,8 +13,13 @@ public class ReviewList implements CommonExecute {
 	@Override
 	public void execute(HttpServletRequest request) {
 		ReviewDao dao = ReviewDao.getDao();
-		List<ReviewDto> dtos=dao.getList();
+		String movieSearch = request.getParameter("movieSearch");
+		if (movieSearch != null) {
+			movieSearch = movieSearch.trim();
+		}
+		List<ReviewDto> dtos=dao.getList(movieSearch);
 		request.setAttribute("dtos", dtos);
+		request.setAttribute("movieSearch", movieSearch);
 		
 	}
 

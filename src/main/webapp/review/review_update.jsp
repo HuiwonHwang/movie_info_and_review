@@ -53,8 +53,8 @@
 				            step="0.5"
 				            value="${dto.getScore() }"
 				        >
-				        <span id="ratingValue">평점을 선택해주세요</span>
-				         <input type="hidden" id="score" name="score" value="">
+				        <span id="ratingValue">${dto.getScore()}점</span>
+				         <input type="hidden" id="score" name="score" value="${dto.getScore()}">
 				    </div>
 				
 				    <div class="rating-range">

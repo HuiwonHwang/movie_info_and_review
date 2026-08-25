@@ -8,6 +8,22 @@ function goSave(){
 	review.action="Review";
 	review.submit();
 }
+
+function searchMovie(){
+	review.t_gubun.value="list";
+	review.method="get";
+	review.action="Review";
+	review.submit();;
+}
+
+function showAllReviews(){
+	review.movieSearch.value="";
+	review.t_gubun.value="list";
+	review.method="get";
+	review.action="Review";
+	review.submit();
+}
+
 function goView(no){
 	review.t_no.value=no;
 	review.t_gubun.value="reviewview";
