@@ -47,6 +47,7 @@
 .reviewTable{
     width:100%;
     border-collapse:collapse;
+     table-layout: fixed;
 }
 
 .reviewTable th{
@@ -62,9 +63,19 @@
     border-bottom:1px solid #eee;
 }
 
-.reviewTable td:nth-child(3){
-    text-align:left;
-    padding-left:15px;
+.reviewTable td:nth-child(2) {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 리뷰 제목 */
+.reviewTable td:nth-child(3) {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .reviewTable tr:hover{

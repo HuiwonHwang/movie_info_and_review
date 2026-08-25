@@ -2,14 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="../common_head.jsp"%>
 <link href="review/review_write.css" rel="stylesheet">
-<script>
-	function goSave(){
-		review.t_gubun.value="reviewsave";
-		review.method="post";
-		review.action="Review";
-		review.submit();
-	}
-</script>
+<script type="text/javascript" src="js/review.js"></script>
 <%@include file="../common_header.jsp"%>
 <c:if test="${empty sessionId }">
 	<script>
@@ -19,6 +12,7 @@
 </c:if>
 <c:if test="${not empty sessionId }">
 <form name="review">
+<input type="hidden" name="t_gubun">
 <div id="reviewWrite">
 
     <h2>리뷰 작성</h2>
@@ -50,26 +44,26 @@
 			    <td>
 			
 			      <div class="rating-box">
-    <label for="rating">평점</label>
-
-    <div class="rating-control">
-        <input
-            type="range"
-            id="rating"
-            min="0.5"
-            max="5"
-            step="0.5"
-            value="3.5"
-        >
-        <span id="ratingValue">3.5</span>
-    </div>
-
-    <div class="rating-range">
-        <span>0.5</span>
-        <span>5.0</span>
-    </div>
-</div>
-<script type="text/javascript" src="js/review.js"></script>
+				
+				    <div class="rating-control">
+				        <input
+				            type="range"
+				            id="rating"
+				            min="0.5"
+				            max="5"
+				            step="0.5"
+				            value="0.5"
+				        >
+				        <span id="ratingValue">평점을 선택해주세요</span>
+				         <input type="hidden" id="score" name="score" value="">
+				    </div>
+				
+				    <div class="rating-range">
+				        <span>0.5</span>
+				        <span>5.0</span>
+				    </div>
+				</div>
+				<script type="text/javascript" src="js/review_Rating.js"></script>
 			    </td>
 			</tr>
 

@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command.review.ReviewDelete;
+import command.review.ReviewList;
+import command.review.ReviewSave;
+import command.review.ReviewUpdate;
+import command.review.ReviewView;
+
 /**
  * Servlet implementation class Review
  */
@@ -33,6 +39,8 @@ public class Review extends HttpServlet {
 		String gubun=request.getParameter("t_gubun");
 		if(gubun==null)gubun="list";
 		if(gubun.equals("list")) {
+			ReviewList review=new ReviewList();
+			review.execute(request);
 			viewPage="review/review_list.jsp";
 		}else if(gubun.equals("writeform")) {
 			viewPage="review/review_write.jsp";
@@ -41,7 +49,24 @@ public class Review extends HttpServlet {
 		}else if(gubun.equals("updateform")) {
 			viewPage="review/review_update.jsp";
 		}else if(gubun.equals("reviewsave")) {
-			     
+			ReviewSave review=new ReviewSave();
+			review.execute(request);
+			viewPage="common_alert_view.jsp";
+		}else if(gubun.equals("reviewview")) {
+			ReviewView review=new ReviewView();
+			review.execute(request);
+			viewPage="review/review_view.jsp";
+		}else if(gubun.equals("deletereview")) {
+			ReviewDelete review = new ReviewDelete();
+			review.execute(request);
+			viewPage="common_alert.jsp";
+		}else if(gubun.equals("updatereviewform")) {
+			ReviewView review=new ReviewView();
+			review.execute(request);
+			viewPage="review/review_update.jsp";
+		}else if(gubun.equals("updatereview")) {
+			ReviewUpdate review=new ReviewUpdate();
+			review.execute(request);
 			viewPage="common_alert_view.jsp";
 		}
 		
