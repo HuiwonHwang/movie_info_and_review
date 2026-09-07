@@ -25,7 +25,7 @@
                 <input type="button" onclick="checkId()" value="중복확인">
                 <input type="text" name="id_check" disabled size="5">
                 <br>
-                <small>영문, 숫자 4~12자</small>
+               <!--  <small>영문, 숫자 4~12자</small> -->
             </td>
         </tr>
 
@@ -123,13 +123,13 @@
             </td>
         </tr>
 
-        <tr>
+      <!--   <tr>
             <th><span>*</span> 약관동의</th>
             <td>
                 <input type="checkbox" name="agree">
                 개인정보 수집 및 이용에 동의합니다.
             </td>
-        </tr>
+        </tr> -->
 
     </table>
 

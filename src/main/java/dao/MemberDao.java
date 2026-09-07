@@ -129,6 +129,27 @@ public class MemberDao {
 		return nickname;
 	}
 
+	public boolean isWithdrawnMember(String id, String password) {
+		boolean withdrawn = false;
+		String sql = "select exit_date from my_황희원_member where id=? and password=?";
+		try {
+			con = DBConnection.getConnection();
+			ps = new LogPreparedStatement(con, sql);
+			ps.setString(1, id);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				withdrawn = rs.getTimestamp("exit_date") != null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error: " + ps.toString());
+		} finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		return withdrawn;
+	}
+
 
 	public MemberDto getMemberInfo(String id) {
 
@@ -368,6 +389,29 @@ public class MemberDao {
 			DBConnection.closeDB(con, ps, rs);
 		}
 		return id;
+	}
+
+
+	public String getPassword(String id, String email_1, String email_2) {
+		String password="";
+		String sql="select id from my_황희원_member where email_1=? and email_2=? and favorite_movie =?";
+		try {
+			con=DBConnection.getConnection();
+			ps= new LogPreparedStatement(con, sql);
+			ps.setString(1,id );
+			ps.setString(2,email_1 );
+			ps.setString(3, email_2);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				password=rs.getString("password");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error:"+ps.toString());
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		return password;
 	}
 	
 	

@@ -67,6 +67,21 @@
 			<input type="button" onclick="deleteReview()" value="삭제">
 	</c:if>
         </div>
+
+        <div class="preNext">
+            <c:if test="${not empty preDto}">
+                <a href="javascript:goView('${preDto.getReview_no()}')" class="pre">
+                    <span>◀ 이전글</span>
+                    <span class="preNextTitle"><c:out value="${preDto.getReview_title()}"/></span>
+                </a>
+            </c:if>
+            <c:if test="${not empty nextDto}">
+                <a href="javascript:goView('${nextDto.getReview_no()}')" class="next">
+                    <span>다음글 ▶</span>
+                    <span class="preNextTitle"><c:out value="${nextDto.getReview_title()}"/></span>
+                </a>
+            </c:if>
+        </div>
     
 
 </div>

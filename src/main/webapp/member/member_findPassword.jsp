@@ -9,39 +9,36 @@
 <input type="hidden" name="t_gubun">
 <div id="login">
 
-    <h2>로그인</h2>
+    <h2>비밀번호 찾기</h2>
 
     <table>
 
         <tr>
             <th>아이디</th>
             <td>
-                <input type="text" name="id" onkeypress="if( event.keyCode==13 ){goPassword()}">
+				<input type="text" name="id"> 
+                
             </td>
         </tr>
 
         <tr>
-            <th>비밀번호</th>
+            <th>이메일</th>
             <td>
-                <input type="password" name="password" onkeypress="if( event.keyCode==13 ){goLogin()}">
+                <input type="text" name="email">
             </td>
         </tr>
 
     </table>
-<!-- <label>
-    <input type="checkbox" name="saveId">
-    아이디 저장
-</label> -->
     <div class="loginBtn">
-        <input type="button" onclick="goLogin()" value="로그인">
+        <input type="button" onclick="goFindPassword()" value="비밀번호 찾기">
     </div>
 
     <div class="loginMenu">
         <a href="javascript:movePage('Member','join')">회원가입</a>
         <span>|</span>
-        <a href="javascript:movePage('Member','findIdForm')">아이디 찾기</a>
+        <a href="javascript:movePage('Member','login')">로그인</a>
         <span>|</span>
-        <a href="javascript:movePage('Member','findPasswordForm')">비밀번호 찾기</a>
+        <a href="javascript:movePage('Member','findIdForm')">아이디 찾기</a>
     </div>
 
 </div>

@@ -282,6 +282,29 @@ div> span{
 .reviewTable a{
     color:black;
 }
+
+#review .reviewTable{
+    table-layout:fixed;
+}
+
+#review .movieTitle{
+    width:80px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#review .reviewTitle{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+#review .writer,
+#review .viewCount{
+    width:70px;
+    white-space:nowrap;
+}
 footer{
     width:1200px;
     height:230px;

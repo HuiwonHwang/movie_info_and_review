@@ -17,21 +17,23 @@
 
     <h2>리뷰 작성</h2>
 
-    
+     <p class="required">
+        <span>*</span> 필수 입력 항목
+    </p>
 
      <table>
 
             <tr>
-                <th>영화</th>
+                <th><span>*</span> 영화</th>
                 <td>
                     <input type="text" name="movie"
                            placeholder="영화 제목을 입력하세요">
-                    <input type="button" value="영화 검색">
+                   <!-- <input type="button" value="영화 검색"> --> 
                 </td>
             </tr>
 
             <tr>
-                <th>제목</th>
+                <th><span>*</span> 제목</th>
                 <td>
                     <input type="text" name="title"
                            class="titleInput"
@@ -40,7 +42,7 @@
             </tr>
 
 			<tr>
-			    <th>별점</th>
+			    <th><span>*</span> 별점</th>
 			    <td>
 			
 			      <div class="rating-box">

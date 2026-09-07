@@ -14,7 +14,17 @@
     border-bottom:2px solid #d32f2f;
 }
 
+.required{
+    text-align:right;
+    margin-bottom:10px;
+    font-size:13px;
+    color:#666;
+}
 
+.required span,
+th span{
+    color:red;
+}
 #reviewWrite table{
     width:100%;
     border-collapse:collapse;

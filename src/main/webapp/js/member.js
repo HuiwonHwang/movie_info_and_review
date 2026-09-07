@@ -21,7 +21,7 @@ function memberJoin(){
 	if(checkEmpty(mem.email_1,"이메일 입력하세요"))return;
 	if(checkEmpty(mem.email_2,"이메일 입력하세요"))return;
 	if(checkEmpty(mem.favorite_movie,"최애영화를 입력하세요"))return;
-	if(checkEmpty(mem.agree,"개인정보 수집 약관에 동의하세요"))return;
+	//if(checkEmpty(mem.agree,"개인정보 수집 약관에 동의하세요"))return;
 	
 	mem.t_gubun.value="memberSave";
 	mem.method="post";
@@ -70,6 +70,9 @@ function count_check(obj){
 
 
 /*********login**********/
+function goPassword(){
+		mem.password.focus();
+}
 function goLogin(){
 	if(checkEmpty(mem.id,"ID를 입력하세요"))return;
 	if(checkEmpty(mem.password,"비밀번호를 입력하세요"))return;
@@ -84,6 +87,15 @@ function goFindId(){
 	if(checkEmpty(mem.favorite_movie,"최애 영화를 입력하세요"))return;
 
 	mem.t_gubun.value="findId";
+	mem.method="post";
+	mem.action="Member";
+	mem.submit();
+}
+function goFindPassword(){
+	if(checkEmpty(mem.id,"아이디를 입력하세요"))return;
+	if(checkEmpty(mem.email,"이메일을 입력하세요"))return;
+
+	mem.t_gubun.value="findPassword";
 	mem.method="post";
 	mem.action="Member";
 	mem.submit();

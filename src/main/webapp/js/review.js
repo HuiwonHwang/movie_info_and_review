@@ -10,6 +10,7 @@ function goSave(){
 }
 
 function searchMovie(){
+	review.t_nowPage.value="1";
 	review.t_gubun.value="list";
 	review.method="get";
 	review.action="Review";
@@ -18,6 +19,15 @@ function searchMovie(){
 
 function showAllReviews(){
 	review.movieSearch.value="";
+	review.t_nowPage.value="1";
+	review.t_gubun.value="list";
+	review.method="get";
+	review.action="Review";
+	review.submit();
+}
+
+function goListPage(page){
+	review.t_nowPage.value=page;
 	review.t_gubun.value="list";
 	review.method="get";
 	review.action="Review";
@@ -52,6 +62,14 @@ function updateReview(no){
 	if(checkEmpty(review.score,"평점을 입력하세요!"))return;
 	review.t_no.value=no;
 	review.t_gubun.value="updatereview";
+	review.method="post";
+	review.action="Review";
+	review.submit();
+}
+
+function goListPage(pageNum){
+	review.t_gubun.value="list";
+	review.t_nowPage.value=pageNum;
 	review.method="post";
 	review.action="Review";
 	review.submit();

@@ -18,7 +18,11 @@ public class ReviewView implements CommonExecute {
 		      if(result != 1) System.out.println("공지사항 조회수 증가 오류."); 
 	      }
 		ReviewDto dto = dao.getView(no);
+		ReviewDto preDto = dao.getPreNextReview(no, 1);
+		ReviewDto nextDto = dao.getPreNextReview(no, -1);
 		request.setAttribute("dto", dto);
+		request.setAttribute("preDto", preDto);
+		request.setAttribute("nextDto", nextDto);
 	}
 
 }

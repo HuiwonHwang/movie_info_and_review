@@ -108,7 +108,7 @@ public class CommonUtil {
 		//첫번째 페이지 인덱스 화면이 아닌경우
 		if(current_page > pagenumber){
 			curpage = startpage -1;  //시작페이지 번호보다 1적은 페이지로 이동
-			strList = strList +"<a href=javascript:goListPage('"+curpage+"') ><i class='fa fa-angle-double-left'></i></a>";
+			strList = strList +"<a href=\"javascript:goListPage('"+curpage+"')\" title=\"이전 페이지\">&laquo;</a>";
 		}
 						
 		//시작페이지 번호부터 마지막 페이지 번호까지 화면에 표시
@@ -124,7 +124,7 @@ public class CommonUtil {
 		//뒤에 페이지가 더 있는 경우
 		if(total_page > endpage){
 			curpage = endpage+1;
-			strList = strList + "<a href=javascript:goListPage('"+curpage+"') ><i class='fa fa-angle-double-right'></i></a>";
+			strList = strList + "<a href=\"javascript:goListPage('"+curpage+"')\" title=\"다음 페이지\">&raquo;</a>";
 		}
 		return strList;
 	}			

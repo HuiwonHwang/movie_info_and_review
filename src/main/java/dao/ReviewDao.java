@@ -173,23 +173,64 @@ public class ReviewDao {
 		return dto;
 	}
 
+	/**
+	 * 목록 정렬(작성일 내림차순) 기준으로 이전글 또는 다음글을 조회한다.
+	 * 이전글은 한 단계 오래된 글(+1), 다음글은 한 단계 최신 글(-1)이다.
+	 */
+	public ReviewDto getPreNextReview(String no, int direction) {
+		ReviewDto dto = null;
+		String orderedReviews = "select review_no, review_title, "
+				+ "row_number() over (order by reg_date desc, review_no desc) as row_num "
+				+ "from my_황희원_review";
+		String sql = "select review_no, review_title from (" + orderedReviews + ") "
+				+ "where row_num = (select row_num + ? from (" + orderedReviews + ") where review_no = ?)";
+		try {
+			con = DBConnection.getConnection();
+			ps = new LogPreparedStatement(con, sql);
+			ps.setInt(1, direction);
+			ps.setString(2, no);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				dto = new ReviewDto();
+				dto.setReview_no(rs.getInt("review_no"));
+				dto.setReview_title(rs.getString("review_title"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("getPreNextReview() 오류: " + ps);
+		} finally {
+			DBConnection.closeDB(con, ps, rs);
+		}
+		return dto;
+	}
+
 	public List<ReviewDto> getList() {
 		return getList(null);
 	}
 
 	public List<ReviewDto> getList(String movieSearch) {
+		return getList(movieSearch, 1, Integer.MAX_VALUE);
+	}
+
+	public List<ReviewDto> getList(String movieSearch, int start, int end) {
 		List<ReviewDto> dtos=new ArrayList<>();
-		String sql="select v.movieNm,r.review_no,r.review_title,r.score,r.reg_date,m.nickname,r.recommend_count,r.view_count from my_황희원_movie v,my_황희원_member m,my_황희원_review r where v.movieCd=r.movieCd and m.id=r.member_id";
+		String sql="select * from (select rownum as rnum, a.* from ("
+				+ "select v.movieNm,r.review_no,r.review_title,r.score,r.reg_date,m.nickname,r.recommend_count,r.view_count "
+				+ "from my_황희원_movie v,my_황희원_member m,my_황희원_review r "
+				+ "where v.movieCd=r.movieCd and m.id=r.member_id";
 		if (movieSearch != null && !movieSearch.isEmpty()) {
 			sql += " and v.movieNm like ?";
 		}
-		sql += " order by r.reg_date desc";
+		sql += " order by r.reg_date desc) a where rownum <= ?) where rnum >= ?";
 		try {
 			con=DBConnection.getConnection();
 			ps=new LogPreparedStatement(con, sql);
+			int parameterIndex = 1;
 			if (movieSearch != null && !movieSearch.isEmpty()) {
-				ps.setString(1, "%" + movieSearch + "%");
+				ps.setString(parameterIndex++, "%" + movieSearch + "%");
 			}
+			ps.setInt(parameterIndex++, end);
+			ps.setInt(parameterIndex, start);
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				int review_no=rs.getInt("review_no");
@@ -273,7 +314,30 @@ public class ReviewDao {
 		}
 		return result;
 	}
-	
+	public int getTotalCount(String search) {
+		int count=0;
+		String sql="select count(*) as count from my_황희원_review r,my_황희원_movie v where r.movieCd=v.movieCd";
+		if (search != null && !search.isEmpty()) {
+			sql += " and v.movieNm like ?";
+		}
+		try {
+			con=DBConnection.getConnection();
+			ps=new LogPreparedStatement(con, sql);
+			if (search != null && !search.isEmpty()) {
+				ps.setString(1, "%" + search + "%");
+			}
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt("count");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error: "+sql);
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}		
+		return count;
+	}
 	
 	
 	

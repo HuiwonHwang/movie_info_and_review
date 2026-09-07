@@ -6,9 +6,10 @@
 <%@include file="../common_header.jsp"%>
 
 
-<form name="review" onsubmit="return searchMovie();">
+<form name="review" onsubmit="searchMovie(); return false;">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_no">
+	<input type="hidden" name="t_nowPage">
 <div id="reviewList">
 
     <h2>리뷰 게시판</h2>
@@ -49,10 +50,11 @@
     <th width="70">조회</th>
    <!--  <th width="70">추천</th> -->
     <th width="100">작성일</th>
-</tr>
+</tr><c:set var="no" value="${order}"/>
 <c:forEach items="${dtos }" var="dto">
       <tr>
-    <td>${dto.getReview_no()}</td>
+    <td>${no}</td>
+    <c:set value="${no - 1}" var="no"/>
     <td>${dto.getMovieNm()}</td>
     <td>
         <a href="javascript:goView('${dto.getReview_no()}')">
@@ -72,14 +74,14 @@
 
 
     <div class="paging">
-
-        <a href="">◀</a>
+		${pageDisplay}
+        <!-- <a href="">◀</a>
         <a href="">1</a>
         <a href="">2</a>
         <a href="">3</a>
         <a href="">4</a>
         <a href="">5</a>
-        <a href="">▶</a>
+        <a href="">▶</a> -->
 
     </div>
 

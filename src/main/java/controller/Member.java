@@ -89,7 +89,12 @@ public class Member extends HttpServlet {
 			MemberDelete mem=new MemberDelete();
 			mem.execute(request);
 			viewPage="common_alert.jsp";
+		}else if(gubun.equals("findPasswordForm")) {
+			viewPage="member/member_findPassword.jsp";
+		}else if(gubun.equals("findPassword")) {
+			
 		}
+
 		
 		
 		RequestDispatcher rd= request.getRequestDispatcher(viewPage);

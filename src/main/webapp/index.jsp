@@ -42,11 +42,11 @@
 </header>
 <nav id="nav">
 <ul>
-	<li><a href="#" onclick="return showPreparationAlert();">현재상영작</a></li>
-	<li><a href="#" onclick="return showPreparationAlert();">개봉예정작</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">현재상영작</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">개봉예정작</a></li>
 	<li><a href="Review">리뷰</a></li>
-	<li><a href="#" onclick="return showPreparationAlert();">굿즈 및 특전</a></li>
-	<li><a href="#" onclick="return showPreparationAlert();">커뮤니티</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">굿즈 및 특전</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">커뮤니티</a></li>
 </ul>
 <!-- 
 <div id="searchbox">
@@ -60,16 +60,17 @@
 		<button type="button" onclick="moviePrev()">◀</button>
     	<button type="button" onclick="movieNext()">▶</button>
 		<ul id="movieview">
+			<li class="movie"><img src="img/poster/오크스트리트.webp" alt="설명" />오크스트리트의 마지막 날</li>
+			<li class="movie"><img src="img/poster/사랑의 하츄핑 고래보석의 전설.webp" alt="설명" />사랑의 하츄핑: 고래보석의 전설</li>
+			<li class="movie"><img src="img/poster/오디세이.webp" alt="설명" />오디세이</li>
+			<li class="movie"><img src="img/poster/스파이더맨 브랜드 뉴 데이.jpg" alt="설명" />스파이더맨 브랜드 뉴 데이</li>
 			<li class="movie"><img src="img/poster/hope.webp" alt="설명" />hope</li>
 			<li class="movie"><img src="img/poster/토이스토리5.webp" alt="설명" />토이스토리 5</li>
 			<li class="movie"><img src="img/poster/군체.webp" alt="설명" />군체</li>
 			<li class="movie"><img src="img/poster/마이클.jpg" alt="설명" />마이클</li>
 			<li class="movie"><img src="img/poster/건담.jpg" alt="설명" />기동전사 건담</li>
 			<li class="movie"><img src="img/poster/위대한 쇼맨.jpg" alt="설명" />위대한 쇼맨</li>
-			<li class="movie"><img src="img/" alt="설명" />영화 7</li>
-			<li class="movie"><img src="img/" alt="설명" />영화 8</li>
-			<li class="movie"><img src="img/" alt="설명" />영화 9</li>
-			<li class="movie"><img src="img/" alt="설명" />영화 10</li>
+			
 		</ul>
 	</div>
 
@@ -162,10 +163,19 @@
                     <tr>
                         <td class="movieTitle"><c:out value="${dto.getMovieNm()}"/></td>
                         <td class="reviewTitle">
-                            <a href="Review?t_gubun=reviewview&t_no=${dto.getReview_no()}"><c:out value="${dto.getReview_title()}"/></a>
+                            <a href="Review?t_gubun=reviewview&t_no=${dto.getReview_no()}">
+                                <c:choose>
+                                    <c:when test="${fn:length(dto.getReview_title()) > 18}">
+                                        <c:out value="${fn:substring(dto.getReview_title(), 0, 18)}"/>...
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:out value="${dto.getReview_title()}"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </a>
                         </td>
                         <td class="writer"><c:out value="${dto.getNickname()}"/></td>
-                        <td class="like">❤ ${dto.getRecommend_count()}</td>
+                        <td class="viewCount">조회 ${dto.getView_count()}</td>
                     </tr>
                 </c:forEach>
             </c:otherwise>

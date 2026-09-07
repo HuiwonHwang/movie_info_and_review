@@ -108,3 +108,10 @@
     background:#d32f2f;
     color:white;
 }
+
+.paging a.active{
+    background:#d32f2f;
+    border-color:#d32f2f;
+    color:white;
+    font-weight:bold;
+}

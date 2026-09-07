@@ -26,11 +26,11 @@
 </header>
 <nav id="nav">
 <ul>
-	<li><a href="#" onclick="return showPreparationAlert();">현재상영작</a></li>
-	<li><a href="#" onclick="return showPreparationAlert();">개봉예정작</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">현재상영작</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">개봉예정작</a></li>
 	<li><a href="Review">리뷰</a></li>
-	<li><a href="#" onclick="return showPreparationAlert();">굿즈 및 특전</a></li>
-	<li><a href="#" onclick="return showPreparationAlert();">커뮤니티</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">굿즈 및 특전</a></li>
+	<li><a href="#" onclick="alert('🚧 페이지 준비 중입니다.'); return false;">커뮤니티</a></li>
 </ul>
 <!-- 
 <div id="searchbox">

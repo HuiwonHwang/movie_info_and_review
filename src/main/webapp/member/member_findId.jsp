@@ -38,7 +38,7 @@
         <span>|</span>
         <a href="javascript:movePage('Member','login')">로그인</a>
         <span>|</span>
-        <a href="">비밀번호 찾기</a>
+        <a href="javascript:movePage('Member','findPasswordForm')">비밀번호 찾기</a>
     </div>
 
 </div>
